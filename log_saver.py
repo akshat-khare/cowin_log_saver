@@ -59,4 +59,4 @@ if __name__=="__main__":
                 f = open(fileName, 'w')
                 f.write(fileCachePointer["%s_%s"%(state_code, districtId)])
                 f.close()
-            time.sleep(2)
+            time.sleep(5)
