@@ -15,10 +15,14 @@ if __name__=='__main__':
     columns = ['district_code', 'state_code', 'timestamp', 'center_id', 'district_name', 'state_name', 'block_name',
                'from','to',
                'fee_type', 'session_date', 'available_capacity', 'min_age_limit', 'vaccine']
-    data_rows = []
+    # data_rows = []
     logFolder = sys.argv[1]
     glob_results = glob.glob('%s/*.txt'%(logFolder))
     glob_results.sort()
+
+    csvfile = open(sys.argv[2], 'w')
+    csvwriter = csv.writer(csvfile)
+    csvwriter.writerow(columns)
 
     invalidfiles = 0
 
@@ -59,8 +63,9 @@ if __name__=='__main__':
                        from_, to_,
                        fee_type,
                        date, available_capacity, min_age_limit, vaccine]
-                data_rows.append(row)
+                # data_rows.append(row)
+                csvwriter.writerow(row)
+    csvfile.close()
+    # df = pd.DataFrame(data_rows, columns=columns)
 
-    df = pd.DataFrame(data_rows, columns=columns)
-
-    df.to_csv(sys.argv[2],index=False)
+    # df.to_csv(sys.argv[2],index=False)
